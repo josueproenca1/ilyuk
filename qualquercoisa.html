@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Gotham City CCM - Vendas</title>
+    <style>
+        /* Centralização e estilo do contêiner */
+        #search-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        /* Barra de Pesquisa */
+        #searchBar-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        #searchBar {
+            width: 100%;
+            padding: 10px 40px 10px 15px;
+            font-size: 1rem;
+            border: 2px solid #333;
+            border-radius: 25px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        #searchIcon {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        /* Contêiner de Resultados */
+        #results {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+            width: 100%;
+            max-width: 400px;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        #results li {
+            padding: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border-bottom: 1px solid #eee;
+        }
+
+        #results li:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Contêiner de Imagens de Cardápio */
+        #menu-image {
+            display: none; /* Oculto até que uma pesquisa seja realizada */
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        #menu-image img {
+            width: 200%; /* Aumentando para 500% */
+            height: auto;
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        /* Estilo do Carrinho */
+        #cart-image {
+            display: none; /* Oculto até que seja necessário */
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        #cart-image img {
+            width: 50px; /* Tamanho da imagem do carrinho */
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="menu-hamburger" id="menu-toggle">&#9776;</div>
+    <img src="imagens/LOGO GOTHAM.png" alt="" class="logo"> 
+    <nav id="nav-menu">
+        <div class="close-button" id="close-button">&times;</div>
+        <ul>
+            <li><a href="index.html">INICIO</a></li>
+            <li><a href="https://www.instagram.com/gothamcity.ccm?igsh=MTE5MHV5a3NkYTk5Mw==">Instagram</a></li>
+            <li><a href="https://chat.whatsapp.com/FCDxlwtmog3JmATCTkMonS" target="_blank">WhatsApp</a></li>
+            <li><a href="https://www.instagram.com/ccm.joaoxxiii?igsh=MWtoeGNiY200d3VzMA==">Contato</a></li>
+            <li><a href="qualquercoisa.html">Vendas</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section id="pesquisa" class="section">
+    <h2>Pesquisar Colaboradores</h2>
+    <div id="search-container">
+        <div id="searchBar-container">
+            <input type="text" id="searchBar" placeholder="Pesquise aqui...">
+            <img src="imagens/lupa.png" alt="Lupa" id="searchIcon">
+            <ul id="results"></ul>
+        </div>
+        <!-- Contêiner para exibir o cardápio específico -->
+        <div id="menu-image">
+            <img id="menuImg" src="" alt="Cardápio">
+        </div>
+        <!-- Contêiner para exibir a imagem do carrinho -->
+        <div id="cart-image">
+            <img src="imagens/carrinho.png" alt="Carrinho">
+        </div>
+    </div>
+</section>
+
+<main>
+    <section id="colaboradores">
+        <div class="titulo-container">
+            <h1>Nossos Colaboradores:</h1>
+            <div class="colaboradores">
+                <div class="colaborador">
+                    <h2>Tropicalia Doces</h2>
+                    <img src="imagens/Tropicalia.jpg" alt="Tropicalia Doces" class="imagem-colaborador">
+                </div>
+                <div class="colaborador">
+                    <h2>Sabor Mágico</h2>
+                    <img src="imagens/sabor.jpg" alt="Sabor Mágico" class="imagem-colaborador">
+                </div>
+                <div class="colaborador">
+                    <h2>Arte e Doces</h2>
+                    <img src="imagens/ArteeDoces.jpg" alt="Arte e Doces" class="imagem-colaborador">
+                </div>
+                <div class="colaborador">
+                    <h2>Tentação Salgada</h2>
+                    <img src="imagens/Tentacao.jpg" alt="Tentação Salgada" class="imagem-colaborador">
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 Gotham City, CCM JOÃO XXIII. Todos os direitos reservados, By Neves e Josué.</p>
+</footer>
+
+<script>
+    // Menu Toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    const closeButton = document.getElementById('close-button');
+
+    menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
+
+    closeButton.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+    });
+
+    // Search Functionality
+    const searchBar = document.getElementById('searchBar');
+    const searchIcon = document.getElementById('searchIcon');
+    const results = document.getElementById('results');
+    const menuImageContainer = document.getElementById('menu-image');
+    const menuImg = document.getElementById('menuImg');
+    const cartImageContainer = document.getElementById('cart-image'); // Contêiner do carrinho
+    
+    const options = {
+        "Tropicalia Doces": "imagens/cardapio1.jpg",
+        "Sabor Mágico": "imagens/cardapio2.png",
+        "Arte e Doces": "imagens/cardapio3.png",
+        "Tentação Salgada": "imagens/cardapio4.png"
+    };
+
+    searchBar.addEventListener("input", () => {
+        const query = searchBar.value.toLowerCase();
+        results.innerHTML = "";
+
+        if (query) {
+            const filteredOptions = Object.keys(options).filter(option =>
+                option.toLowerCase().includes(query) || query === "todos"
+            );
+            
+            filteredOptions.forEach(option => {
+                const li = document.createElement("li");
+                li.textContent = option;
+                li.addEventListener("click", () => {
+                    searchBar.value = option;
+                    results.innerHTML = "";
+                    displayMenuImage(option);
+                });
+                results.appendChild(li);
+            });
+        }
+    });
+
+    // Display the specific menu image based on the search term
+    searchIcon.addEventListener("click", () => {
+        displayMenuImage(searchBar.value);
+    });
+
+    searchBar.addEventListener("keypress", (event) => {
+        if (event.key === "Enter") {
+            displayMenuImage(searchBar.value);
+        }
+    });
+
+    function displayMenuImage(searchTerm) {
+        const selectedImage = options[searchTerm];
+
+        // Se o termo for "todos", exibe a imagem do carrinho e oculta o cardápio
+        if (searchTerm.toLowerCase() === "todos") {
+            cartImageContainer.style.display = "block"; // Exibe o carrinho
+            menuImageContainer.style.display = "none"; // Oculta a imagem do cardápio
+        } else {
+            // Se houver imagem selecionada, exibe-a
+            if (selectedImage) {
+                menuImg.src = selectedImage;
+                menuImageContainer.style.display = "block"; // Exibir o contêiner de imagem
+                cartImageContainer.style.display = "none"; // Ocultar o carrinho
+            } else {
+                menuImageContainer.style.display = "none"; // Ocultar se não houver imagem
+                cartImageContainer.style.display = "none"; // Ocultar carrinho
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
